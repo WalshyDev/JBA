@@ -33,11 +33,12 @@ public abstract class JBA {
      * @param token The bot token.
      * @param botPrefix The prefix of your bot.
      */
-    public void init(AccountType type, String token, String botPrefix){
+    public JDA init(AccountType type, String token, String botPrefix){
         try {
-            init(new JDABuilder(type).setToken(token).buildBlocking(), botPrefix);
+            return init(new JDABuilder(type).setToken(token).buildBlocking(), botPrefix);
         } catch (LoginException | InterruptedException | RateLimitedException e) {
-            e.printStackTrace();
+            LOGGER.error("Failed to init", e);
+            return null;
         }
     }
 
@@ -48,11 +49,12 @@ public abstract class JBA {
      * @param jda
      * @param botPrefix
      */
-    public void init(JDA jda, String botPrefix){
+    public JDA init(JDA jda, String botPrefix){
         instance = this;
+        jda.addEventListener(new JBAListener());
         this.client = jda;
         this.prefix = botPrefix;
-        jda.addEventListener(new JBAListener());
+        return client;
     }
 
     /**
