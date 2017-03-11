@@ -34,25 +34,24 @@ public abstract class JBA {
      * @param botPrefix The prefix of your bot.
      */
     public JDA init(AccountType type, String token, String botPrefix){
-        try {
-            return init(new JDABuilder(type).setToken(token).buildBlocking(), botPrefix);
-        } catch (LoginException | InterruptedException | RateLimitedException e) {
-            LOGGER.error("Failed to init", e);
-            return null;
-        }
+        return init(new JDABuilder(type).setToken(token), botPrefix);
     }
 
     /**
      * Use this method to create the bot, pass the JDA client and bot prefix to setup the command system to use a given prefix.
      *
      * If you want to use custom prefix's for example override the {@link #getPrefix(Guild)} method and make that return whatever is needed.
-     * @param jda
+     * @param jdaBuilder
      * @param botPrefix
      */
-    public JDA init(JDA jda, String botPrefix){
+    public JDA init(JDABuilder jdaBuilder, String botPrefix){
         instance = this;
-        jda.addEventListener(new JBAListener());
-        this.client = jda;
+        jdaBuilder.addListener(new JBAListener());
+        try {
+            this.client = jdaBuilder.buildBlocking();
+        } catch (LoginException | InterruptedException | RateLimitedException e) {
+            LOGGER.error("Failed to build client", e);
+        }
         this.prefix = botPrefix;
         return client;
     }

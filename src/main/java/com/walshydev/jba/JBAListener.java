@@ -19,10 +19,12 @@ public class JBAListener extends ListenerAdapter {
     private static final ExecutorService CACHED_POOL = Executors.newCachedThreadPool(r ->
             new Thread(COMMAND_THREADS, r, "Command Pool-" + COMMAND_THREADS.activeCount()));
 
+    @Override
     public void onReady(ReadyEvent event) {
         jba.run();
     }
 
+    @Override
     public void onGuildMessageReceived(GuildMessageReceivedEvent event) {
         if (event.getMessage().getRawContent().startsWith(String.valueOf(jba.getPrefix(event.getGuild())))
                 && !event.getAuthor().isBot()) {
