@@ -1,6 +1,8 @@
 package com.walshydev.jba;
 
+import com.mysql.cj.jdbc.MysqlDataSource;
 import com.walshydev.jba.commands.Command;
+import com.walshydev.jba.sql.SQLTask;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
@@ -51,6 +53,23 @@ public abstract class JBA {
         this.client = jda;
         this.prefix = botPrefix;
         jda.addEventListener(new JBAListener());
+    }
+
+    /**
+     * Set's up a MySQL dataSource so that you can run {@link SQLController#runSqlTask(SQLTask)}
+     * @param user MySQL User
+     * @param password MySQL user password
+     * @param serverName Server name
+     * @param dbName Database name
+     */
+    public void setupMySQL(String user, String password, String serverName, String dbName){
+        MysqlDataSource dataSource = SQLController.getDataSource();
+        dataSource.setUser(user);
+        dataSource.setPassword(password);
+        dataSource.setDatabaseName(dbName);
+        dataSource.setServerName(serverName);
+        dataSource.setPort(3306);
+        dataSource.setPortNumber(3306);
     }
 
     /**
