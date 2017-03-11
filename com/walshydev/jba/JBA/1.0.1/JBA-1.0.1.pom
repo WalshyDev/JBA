@@ -6,7 +6,7 @@
 
     <groupId>com.walshydev.jba</groupId>
     <artifactId>JBA</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 
     <properties>
         <github.global.server>github</github.global.server>
@@ -29,6 +29,11 @@
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <version>1.1.7</version>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>6.0.4</version>
         </dependency>
     </dependencies>
 
