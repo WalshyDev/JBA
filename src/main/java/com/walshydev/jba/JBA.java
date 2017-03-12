@@ -23,7 +23,7 @@ public abstract class JBA {
 
     private JDA client;
     private String prefix;
-    private String version;
+    private static String version;
 
     private List<Command> commands = new CopyOnWriteArrayList<>();
     public static final Logger LOGGER = LoggerFactory.getLogger("JBA");
@@ -106,11 +106,11 @@ public abstract class JBA {
         return instance;
     }
 
-    public String getJBAVersion(){
+    public static String getJBAVersion(){
         if(version == null){
             Properties p = new Properties();
             try {
-                p.load(getClass().getClassLoader().getResourceAsStream("version.properties"));
+                p.load(instance.getClass().getClassLoader().getResourceAsStream("version.properties"));
             } catch (IOException e) {
                 LOGGER.error("There was an error trying to load the version!", e);
                 return null;
