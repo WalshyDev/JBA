@@ -150,13 +150,16 @@ public abstract class JBA {
      * @param dbName Database name
      */
     public void setupMySQL(String user, String password, String serverName, String dbName){
-        MysqlDataSource dataSource = SQLController.getDataSource();
+        MysqlDataSource dataSource = new MysqlDataSource();
         dataSource.setUser(user);
         dataSource.setPassword(password);
         dataSource.setDatabaseName(dbName);
         dataSource.setServerName(serverName);
         dataSource.setPort(3306);
         dataSource.setPortNumber(3306);
+        dataSource.setURL(dataSource.getURL() + "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&autoReconnect=true&useSSL=false");
+        dataSource.setUrl(dataSource.getUrl() + "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&autoReconnect=true&useSSL=false");
+        SQLController.setDataSource(dataSource);
     }
 
     /**

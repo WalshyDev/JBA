@@ -10,16 +10,10 @@ import java.sql.SQLException;
 public class SQLController {
 
     private static final Context context = null;
-    private static final MysqlDataSource dataSource;
+    private static MysqlDataSource dataSource;
 
-    static {
-        dataSource = new MysqlDataSource();
-        dataSource.setURL(dataSource.getURL() + "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&autoReconnect=true&useSSL=false");
-        dataSource.setUrl(dataSource.getUrl() + "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&autoReconnect=true&useSSL=false");
-    }
-
-    protected static MysqlDataSource getDataSource(){
-        return dataSource;
+    protected static void setDataSource(MysqlDataSource source){
+        dataSource = source;
     }
 
     private static Connection getConnection() throws SQLException {
