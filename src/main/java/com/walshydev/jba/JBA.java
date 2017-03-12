@@ -12,7 +12,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.security.auth.login.LoginException;
+import java.io.IOException;
 import java.util.List;
+import java.util.Properties;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public abstract class JBA {
@@ -21,6 +23,7 @@ public abstract class JBA {
 
     private JDA client;
     private String prefix;
+    private String version;
 
     private List<Command> commands = new CopyOnWriteArrayList<>();
     public static final Logger LOGGER = LoggerFactory.getLogger("JBA");
@@ -101,5 +104,19 @@ public abstract class JBA {
 
     protected static JBA getInstance(){
         return instance;
+    }
+
+    public String getJBAVersion(){
+        if(version == null){
+            Properties p = new Properties();
+            try {
+                p.load(getClass().getClassLoader().getResourceAsStream("version.properties"));
+            } catch (IOException e) {
+                LOGGER.error("There was an error trying to load the version!", e);
+                return null;
+            }
+            version = p.getProperty("version");
+        }
+        return version;
     }
 }
