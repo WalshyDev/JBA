@@ -29,7 +29,7 @@ public class JBAListener extends ListenerAdapter {
         if (event.getMessage().getRawContent().startsWith(String.valueOf(jba.getPrefix(event.getGuild())))
                 && !event.getAuthor().isBot()) {
             String message = event.getMessage().getRawContent();
-            String command = message.substring(1);
+            String command = message.replaceFirst(jba.getPrefix(event.getGuild()), "");
             String[] args = new String[0];
             if (message.contains(" ")) {
                 command = command.substring(0, message.indexOf(" ") - 1);

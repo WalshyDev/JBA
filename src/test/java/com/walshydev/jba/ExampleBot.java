@@ -35,7 +35,7 @@ public class ExampleBot extends JBA {
         // This is your account type so AccountType.BOT or AccountType.CLIENT
         // Then pass your bot/client token
         // Third argument is the command prefix. You can chose to not include this for no command system.
-        super.init(AccountType.BOT, properties.getProperty("token"), "!");
+        super.init(AccountType.BOT, properties.getProperty("token"), "!~");
     }
 
     @Override
