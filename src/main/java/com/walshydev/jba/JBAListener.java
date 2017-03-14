@@ -32,7 +32,7 @@ public class JBAListener extends ListenerAdapter {
             String command = message.replaceFirst(jba.getPrefix(event.getGuild()), "");
             String[] args = new String[0];
             if (message.contains(" ")) {
-                command = command.substring(0, message.indexOf(" ") - 1);
+                command = command.substring(0, command.indexOf(" "));
 
                 args = message.substring(message.indexOf(" ") + 1).split(" ");
             }
