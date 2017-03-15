@@ -11,8 +11,8 @@ If you use Maven you will want to put this in your pom.xml
 ```xml
 <repositories>
     <repository>
-        <id>JBA-mvn-repo</id>
-        <url>https://raw.github.com/bwfcwalshyPluginDev/JBA/mvn-repo/</url>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
     </repository>
 </repositories>
 ...
