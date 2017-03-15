@@ -67,7 +67,7 @@
                     <branch>refs/heads/mvn-repo</branch>
                     <includes><include>**/*</include></includes>
                     <repositoryName>JBA</repositoryName>
-                    <repositoryOwner>bwfcwalshyPluginDev</repositoryOwner>
+                    <repositoryOwner>WalshyDev</repositoryOwner>
                 </configuration>
                 <executions>
                     <execution>
