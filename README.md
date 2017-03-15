@@ -1,3 +1,6 @@
+[![Release](https://jitpack.io/v/User/Repo.svg)]
+(https://jitpack.io/#WalshyDev/JBA)
+
 # JBA
 Allows you to easily create a JDA bot with a command system fully built in!
 
