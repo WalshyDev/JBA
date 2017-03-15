@@ -6,7 +6,7 @@
 
     <groupId>com.walshydev.jba</groupId>
     <artifactId>JBA</artifactId>
-    <version>1.1.3</version>
+    <version>1.1.4</version>
 
     <properties>
         <github.global.server>github</github.global.server>
@@ -23,7 +23,7 @@
         <dependency>
             <groupId>net.dv8tion</groupId>
             <artifactId>JDA</artifactId>
-            <version>3.0.BETA2_148</version>
+            <version>3.0.BETA2_154</version>
         </dependency>
         <dependency>
             <groupId>ch.qos.logback</groupId>
@@ -86,5 +86,11 @@
                 </configuration>
             </plugin>
         </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
     </build>
 </project>

@@ -49,6 +49,6 @@ public class ExampleBot extends JBA {
         registerCommand(new PingCommand());
 
         // Log that the bot has fully started.
-        LOGGER.info("Started the example bot successfully!");
+        LOGGER.info("Started the example bot successfully! JBA is running v" + getJBAVersion());
     }
 }
