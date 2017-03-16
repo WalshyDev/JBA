@@ -1,5 +1,3 @@
-[![](https://jitpack.io/v/WalshyDev/JBA.svg)](https://jitpack.io/#WalshyDev/JBA)
-
 # JBA
 Allows you to easily create a JDA bot with a command system fully built in!
 
@@ -11,8 +9,8 @@ If you use Maven you will want to put this in your pom.xml
 ```xml
 <repositories>
     <repository>
-        <id>jitpack.io</id>
-        <url>https://jitpack.io</url>
+        <id>JBA-mvn-repo</id>
+        <url>https://raw.github.com/WalshyDev/JBA/mvn-repo/</url>
     </repository>
 </repositories>
 ...
@@ -20,7 +18,7 @@ If you use Maven you will want to put this in your pom.xml
     <dependency>
         <groupId>com.walshydev.jba</groupId>
         <artifactId>JBA</artifactId>
-        <version>1.1.3</version>
+        <version>1.1.5</version>
     </dependency>
 </dependencies>
 ```
