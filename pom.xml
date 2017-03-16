@@ -39,37 +39,11 @@
 
     <distributionManagement>
         <repository>
-            <id>bintray-walshy-JBA</id>
-            <name>walshy-JBA</name>
-            <url>https://api.bintray.com/maven/walshy/JBA/JBA/;publish=1</url>
+            <id>internal.repo</id>
+            <name>Temporary Staging Repository</name>
+            <url>file://${project.build.directory}/mvn-repo</url>
         </repository>
     </distributionManagement>
-
-    <profiles>
-        <profile>
-            <repositories>
-                <repository>
-                    <snapshots>
-                        <enabled>false</enabled>
-                    </snapshots>
-                    <id>bintray-walshy-JBA</id>
-                    <name>bintray</name>
-                    <url>http://walshy.bintray.com/JBA</url>
-                </repository>
-            </repositories>
-            <pluginRepositories>
-                <pluginRepository>
-                    <snapshots>
-                        <enabled>false</enabled>
-                    </snapshots>
-                    <id>bintray-walshy-JBA</id>
-                    <name>bintray-plugins</name>
-                    <url>http://walshy.bintray.com/JBA</url>
-                </pluginRepository>
-            </pluginRepositories>
-            <id>bintray</id>
-        </profile>
-    </profiles>
 
     <build>
         <plugins>
