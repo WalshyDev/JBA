@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Scheduler {
 
-    private static final ScheduledExecutorService timer = Executors.newScheduledThreadPool(10, r -> new Thread(r, "FlareBot Scheduled Task"));
+    private static final ScheduledExecutorService timer = Executors.newScheduledThreadPool(10, r -> new Thread(r, "JBA Scheduled Task"));
     private static final Map<String, ScheduledFuture<?>> tasks = new HashMap<>();
 
     public static boolean scheduleRepeating(Runnable task, String taskName, long delay, long interval) {
