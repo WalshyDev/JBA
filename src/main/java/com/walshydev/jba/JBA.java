@@ -113,13 +113,13 @@ public abstract class JBA {
         this.shards = shards;
         if(clients.length == 1) {
             try {
-                this.clients[0] = jdaBuilder.buildBlocking();
+                this.clients[0] = jdaBuilder.buildAsync();
             } catch ( RateLimitedException e) {
                 LOGGER.error("Failed to build client! Retrying in " + e.getRetryAfter() + " milliseconds", e);
                 try {
                     Thread.sleep(e.getRetryAfter());
                 } catch (InterruptedException e1) {}
-            } catch (LoginException | InterruptedException e) {
+            } catch (LoginException e) {
                 LOGGER.error("Failed to login!", e);
             }
         }else{
