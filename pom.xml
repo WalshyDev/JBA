@@ -6,7 +6,7 @@
 
     <groupId>com.walshydev.jba</groupId>
     <artifactId>JBA</artifactId>
-    <version>1.1.5</version>
+    <version>1.1.6</version>
 
     <properties>
         <github.global.server>github</github.global.server>
