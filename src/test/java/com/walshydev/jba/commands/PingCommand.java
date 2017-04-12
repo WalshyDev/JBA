@@ -10,8 +10,10 @@ import net.dv8tion.jda.core.entities.User;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
 import java.time.temporal.ChronoUnit;
 
 public class PingCommand implements Command {
@@ -19,7 +21,7 @@ public class PingCommand implements Command {
     @Override
     public void onCommand(User sender, TextChannel channel, Message message, String[] args, Member member) {
         // Get the time since the message sent by the user was created.
-        long pongTime = message.getCreationTime().until(LocalDateTime.now().atOffset(ZoneOffset.UTC), ChronoUnit.MILLIS);
+        long pongTime = message.getCreationTime().until(ZonedDateTime.now(), ChronoUnit.MILLIS);
         channel.sendMessage("Pong! `" + pongTime + "ms`").queue();
         try {
             SQLController.runSqlTask(conn -> {

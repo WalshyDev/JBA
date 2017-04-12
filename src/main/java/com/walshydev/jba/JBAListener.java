@@ -1,6 +1,7 @@
 package com.walshydev.jba;
 
 import com.walshydev.jba.commands.Command;
+import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.events.ReadyEvent;
@@ -27,8 +28,9 @@ public class JBAListener extends ListenerAdapter {
 
     @Override
     public void onGuildMessageReceived(GuildMessageReceivedEvent event) {
-        if (event.getMessage().getRawContent().startsWith(String.valueOf(jba.getPrefix(event.getGuild())))
-                && !event.getAuthor().isBot()) {
+        if (event.getMessage().getRawContent().startsWith(String.valueOf(jba.getPrefix(event.getGuild()))) &&
+            (jba.getClient().getAccountType() == AccountType.BOT && !event.getAuthor().isBot()) || (jba.getClient().getAccountType() == AccountType.CLIENT && event.getMessage()
+                .getAuthor().getId().equals(jba.getClient().getSelfUser().getId()))) {
             String message = event.getMessage().getRawContent();
             String command = message.replaceFirst(Pattern.quote(jba.getPrefix(event.getGuild())), "");
             String[] args = new String[0];
