@@ -5,6 +5,7 @@ import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.events.ReadyEvent;
+import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
@@ -27,9 +28,9 @@ public class JBAListener extends ListenerAdapter {
     }
 
     @Override
-    public void onGuildMessageReceived(GuildMessageReceivedEvent event) {
+    public void onMessageReceived(MessageReceivedEvent event) {
         if (event.getMessage().getRawContent().startsWith(String.valueOf(jba.getPrefix(event.getGuild()))) &&
-            (jba.getClient().getAccountType() == AccountType.BOT && !event.getAuthor().isBot()) || (jba.getClient().getAccountType() == AccountType.CLIENT && event.getMessage()
+                (jba.getClient().getAccountType() == AccountType.BOT && !event.getAuthor().isBot()) || (jba.getClient().getAccountType() == AccountType.CLIENT && event.getMessage()
                 .getAuthor().getId().equals(jba.getClient().getSelfUser().getId()))) {
             String message = event.getMessage().getRawContent();
             String command = message.replaceFirst(Pattern.quote(jba.getPrefix(event.getGuild())), "");
@@ -55,7 +56,7 @@ public class JBAListener extends ListenerAdapter {
         }
     }
 
-    private void execute(Command cmd, String[] args, GuildMessageReceivedEvent event) {
+    private void execute(Command cmd, String[] args, MessageReceivedEvent event) {
         CACHED_POOL.submit(() -> {
             JBA.LOGGER.info(
                     "Dispatching command '" + cmd.getCommand() + "' " + Arrays.toString(args) + " in " + event.getChannel() + "! Sender: " +

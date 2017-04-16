@@ -1,13 +1,10 @@
 package com.walshydev.jba.commands;
 
-import net.dv8tion.jda.core.entities.Member;
-import net.dv8tion.jda.core.entities.Message;
-import net.dv8tion.jda.core.entities.TextChannel;
-import net.dv8tion.jda.core.entities.User;
+import net.dv8tion.jda.core.entities.*;
 
 public interface Command {
 
-    void onCommand(User sender, TextChannel channel, Message message, String[] args, Member member);
+    void onCommand(User sender, MessageChannel channel, Message message, String[] args, Member member);
 
     String getCommand();
 
