@@ -16,27 +16,17 @@ public class ExampleBot extends JBA {
         new ExampleBot().init();
     }
 
-    private File config;
-    private Properties properties;
+    private Config config;
 
     public void init(){
-        config = new File("config.prop");
-        properties = new Properties();
-        try {
-            if(!config.exists()){
-                config.createNewFile();
-                properties.setProperty("token", "Not Set");
-                properties.store(new FileOutputStream(config), null);
-            }else{
-                properties.load(new FileInputStream(config));
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        // This is the new config system, here you make a JSON file which you can hold a bunch of configurable values.
+        // In this case we are using it to store token and prefix.
+        // The parameter for Config is the config name (If it doesn't have a .json extension it will be added itself!)
+        config = new Config("config");
         // This is your account type so AccountType.BOT or AccountType.CLIENT
         // Then pass your bot/client token
         // Third argument is the command prefix. You can chose to not include this for no command system.
-        super.init(AccountType.BOT, properties.getProperty("token"), "!~");
+        super.init(AccountType.BOT, config.getString("token"), config.getString("prefix"));
     }
 
     @Override
