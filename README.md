@@ -64,3 +64,11 @@ public class PingCommand implements Command {
 You do not need to set the description, that just makes it easier for help commands.
 
 You can also override the method String[] getAliases() this allows you to set an alias for the command for example `p` instead of `ping`.
+
+## Example Config
+```json
+{
+  "token": "botToken",
+  "prefix": "!~"
+}
+```
