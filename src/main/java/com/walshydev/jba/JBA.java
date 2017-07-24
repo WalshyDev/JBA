@@ -108,7 +108,7 @@ public abstract class JBA {
      */
     public JDA init(JDABuilder jdaBuilder, int shards, String botPrefix) {
         instance = this;
-        jdaBuilder.addListener(new JBAListener());
+        jdaBuilder.addEventListener(new JBAListener());
         clients = new JDA[shards];
         this.shards = shards;
         if(clients.length == 1) {

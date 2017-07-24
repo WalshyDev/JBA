@@ -29,8 +29,8 @@ public class JBAListener extends ListenerAdapter {
 
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
-        if (event.getMessage().getRawContent().startsWith(String.valueOf(jba.getPrefix(event.getGuild()))) &&
-                (jba.getClient().getAccountType() == AccountType.BOT && !event.getAuthor().isBot()) || (jba.getClient().getAccountType() == AccountType.CLIENT && event.getMessage()
+        if (event.getMessage().getRawContent().startsWith(jba.getPrefix(event.getGuild())) &&
+                (jba.getClient().getAccountType() == AccountType.BOT && !event.getAuthor().isBot() || jba.getClient().getAccountType() == AccountType.CLIENT && event.getMessage()
                 .getAuthor().getId().equals(jba.getClient().getSelfUser().getId()))) {
             String message = event.getMessage().getRawContent();
             String command = message.replaceFirst(Pattern.quote(jba.getPrefix(event.getGuild())), "");
