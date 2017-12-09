@@ -18,7 +18,7 @@ If you use Maven you will want to put this in your pom.xml
     <dependency>
         <groupId>com.walshydev.jba</groupId>
         <artifactId>JBA</artifactId>
-        <version>1.1.5</version>
+        <version>1.2</version>
     </dependency>
 </dependencies>
 ```
