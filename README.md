@@ -34,7 +34,7 @@ If you use Maven you will want to put this in your pom.xml
 new YourBotClass().init(AccountType.BOT, "<token>", "<prefix>");
 
 // If you want to do something like set the game using the builder you can also pass JDABuilder instead of AccountType and the token like so
-new YourBotClass().init(new JDABuilder(AccountType.BOT).setToken("<token>").setGame(Game.of("Thrones"), "<prefix");
+new YourBotClass().init(new JDABuilder(AccountType.BOT).setToken("<token>").setGame(Game.of("Thrones"), "<prefix>");
 ```
 
 # Using the command system
