@@ -38,7 +38,7 @@ new YourBotClass().init(new JDABuilder(AccountType.BOT).setToken("<token>").setG
 ```
 
 # Using the command system
-To use the command system it is very easy, just make a class and implemenet Command like so, that will then generate the default methods that you can use.
+To use the command system it is very easy, just make a class and implement Command like so, that will then generate the default methods that you can use.
 
 ```java
 public class PingCommand implements Command {
