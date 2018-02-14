@@ -122,7 +122,7 @@ config.getString("mysql.user"); // Returns "user"
 ```
 
 ## Example Config
-```json
+```
 {
   "token": "botToken",
   "prefix": "!~"
