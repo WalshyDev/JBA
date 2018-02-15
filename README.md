@@ -72,7 +72,7 @@ For ease of use, JBA comes built in with a few classes to help you use MySQL as 
 setupMySQL("mysql_user", "mysql_pass", "mysql_address", "mysql_dbname");
 ```
 
-This can be easily configured with the Config system in JBA, which you can scroll further down to see.
+This can be easily configured with the Config system in JBA, which you can see [here.](#config-and-mysql)
 You can then query the database like so:
 
 ```java
@@ -111,16 +111,16 @@ You create it like this:
 Config config = new Config("config");
 ```
 
-This creates a new file called config.json. You can then write in your config, following the template found in the Example Config area below.  You can check if a value exists using `config.exists(String path);`, and you can recall values from the config using one of the methods below, and a few others.
+This creates a new file called config.json. You can then write in your config, following the template found in the Example Config area below.
+You can check if a value exists using `config.exists(String path)`, and you can recall values from the config using one of the methods below, and a few others.
 
 ```java
 config.getString("token"); // Returns "botToken"
 config.getString("prefix"); // Returns "!~"
 config.getString("mysql.user"); // Returns "user"
 ```
-
-<a name="mysql-config"></a>
-You can use this with the `setupMySQL()` method mentioned earlier for an easier setup.
+## Config and MySQL
+You also can use this with the `setupMySQL()` method mentioned earlier for a more secure and more configurable setup.
 
 ```java
 setupMySQL(config.getString("mysql.user"), config.getString("mysql.password"), config.getString("mysql.address"), config.getString("mysql.dbname"));
