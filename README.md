@@ -133,9 +133,9 @@ setupMySQL(config.getString("mysql.user"), config.getString("mysql.password"), c
   "prefix": "!~",
   "mysql": {
     "user": "user",
-    "password":"password",
-    "address":"127.0.0.1",
-    "dbname":"botdatabase"
+    "password": "password",
+    "address": "127.0.0.1",
+    "dbname": "botdatabase"
   }
 }
 ```
