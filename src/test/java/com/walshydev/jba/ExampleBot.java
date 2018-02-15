@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Properties;
 
 public class ExampleBot extends JBA {
@@ -39,9 +40,15 @@ public class ExampleBot extends JBA {
         // Register a new command
         registerCommand(new PingCommand());
 
-        getClient().getPresence().setGame(Game.of("Thrones"));
+        getClient().getPresence().setGame(Game.playing("JBA is cool"));
 
         // Log that the bot has fully started.
         LOGGER.info("Started the example bot successfully! JBA is running v" + getJBAVersion());
+
+        config.set("welcome.messages", new ArrayList<String>());
+
+        config.save();
+
+        System.out.println(config.getStringList("welcome.messages"));
     }
 }

@@ -23,7 +23,7 @@
         <dependency>
             <groupId>net.dv8tion</groupId>
             <artifactId>JDA</artifactId>
-            <version>3.2.0_237</version>
+            <version>3.5.1_339</version>
         </dependency>
         <dependency>
             <groupId>ch.qos.logback</groupId>

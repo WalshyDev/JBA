@@ -133,13 +133,15 @@ public class Config {
         String lastSubPath = path;
         if(path.contains("."))
             lastSubPath = path.substring(0, path.lastIndexOf('.'));
-        JsonElement element = getElement(lastSubPath, new JsonObject());
+        System.out.println(lastSubPath);
+        JsonElement element = getElement(path, new JsonObject());
 
         if(element.isJsonObject())
             element.getAsJsonObject().add(lastSubPath, parser.parse(gson.toJson(obj)));
         else
             throw new IllegalArgumentException("Make sure the element at the specified path is a JsonObject not a JsonArray!!");
             //element.getAsJsonArray().add(parser.parse(gson.toJson(obj)));
+        object.add(path, element);
     }
 
     /**

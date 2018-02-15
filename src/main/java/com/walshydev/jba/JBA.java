@@ -3,11 +3,15 @@ package com.walshydev.jba;
 import com.mysql.cj.jdbc.MysqlDataSource;
 import com.walshydev.jba.commands.Command;
 import com.walshydev.jba.sql.SQLTask;
+import net.dv8tion.jda.bot.sharding.DefaultShardManager;
+import net.dv8tion.jda.bot.sharding.DefaultShardManagerBuilder;
+import net.dv8tion.jda.bot.sharding.ShardManager;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
 import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.exceptions.RateLimitedException;
+import net.dv8tion.jda.core.utils.SessionControllerAdapter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,8 +25,9 @@ public abstract class JBA {
 
     private static JBA instance;
 
-    private JDA[] clients;
-    private int shards;
+    private String token;
+    private JDA client;
+    private ShardManager shardManager;
     private String prefix;
     private static String version;
 
@@ -108,38 +113,23 @@ public abstract class JBA {
      */
     public JDA init(JDABuilder jdaBuilder, int shards, String botPrefix) {
         instance = this;
-        jdaBuilder.addEventListener(new JBAListener());
-        clients = new JDA[shards];
-        this.shards = shards;
-        if(clients.length == 1) {
-            try {
-                this.clients[0] = jdaBuilder.buildAsync();
-            } catch ( RateLimitedException e) {
-                LOGGER.error("Failed to build client! Retrying in " + e.getRetryAfter() + " milliseconds", e);
-                try {
-                    Thread.sleep(e.getRetryAfter());
-                } catch (InterruptedException e1) {}
-            } catch (LoginException e) {
-                LOGGER.error("Failed to login!", e);
-            }
-        }else{
-            for(int i = 0; i < clients.length; i++){
-                while(true) {
-                    try{
-                        clients[i] = jdaBuilder.useSharding(i, clients.length).buildAsync();
-                    } catch (RateLimitedException e) {
-                        LOGGER.error("Failed to build client! Retrying in " + e.getRetryAfter() + " milliseconds", e);
-                        try {
-                            Thread.sleep(e.getRetryAfter());
-                        } catch (InterruptedException e1) {}
-                    } catch (LoginException e) {
-                        LOGGER.error("Failed to login!", e);
-                    }
-                }
-            }
-        }
         this.prefix = botPrefix;
-        return clients[0];
+        JBAListener jbaListener = new JBAListener();
+        try {
+            if (shards == 1) {
+                client = jdaBuilder.addEventListener(jbaListener).buildAsync();
+            } else {
+                shardManager = new DefaultShardManagerBuilder().setToken(token)
+                        .setSessionController(new SessionControllerAdapter())
+                        .setShards(shards)
+                        .addEventListeners(jbaListener)
+                .build();
+                this.client = shardManager.getShardById(0);
+            }
+        } catch (LoginException e) {
+            LOGGER.error("Failed to build client", e);
+        }
+        return client;
     }
 
     /**
@@ -169,15 +159,15 @@ public abstract class JBA {
     public abstract void run();
 
     public JDA getClient(){
-        return this.clients[0];
+        return this.client;
     }
 
-    public JDA[] getClients(){
-        return this.clients;
+    public ShardManager getShardManager(){
+        return this.shardManager;
     }
 
     public int getTotalShards(){
-        return this.shards;
+        return this.shardManager.getShardsTotal();
     }
 
     /**
