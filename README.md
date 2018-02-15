@@ -111,7 +111,7 @@ You create it like this:
 Config config = new Config("config");
 ```
 
-This creates a new file called config.json. You can then write in your config, following the template found in the Example Config area below.
+This creates a new file called `config.json.` You can then write in your config, following the template found in the Example Config area below.
 You can check if a value exists using `config.exists(String path)`, and you can recall values from the config using one of the methods below, and a few others.
 
 ```java
