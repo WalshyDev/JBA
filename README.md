@@ -120,7 +120,7 @@ config.getString("prefix"); // Returns "!~"
 config.getString("mysql.user"); // Returns "user"
 ```
 ## Config and MySQL
-You also can use this with the `setupMySQL()` method mentioned earlier for a more secure and more configurable setup.
+You also could use this with the `setupMySQL()` method mentioned earlier for a more secure and more configurable setup.
 
 ```java
 setupMySQL(config.getString("mysql.user"), config.getString("mysql.password"), config.getString("mysql.address"), config.getString("mysql.dbname"));
