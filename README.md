@@ -103,7 +103,7 @@ public Clazz getClazzById(String id) {
 }
 ```
 
-# Config <a name="config"></a>
+# Config
 JBA also comes with a `Config` class to make it easier to make configs.
 You create it like this:
 
