@@ -69,9 +69,10 @@ You can also override the method String[] getAliases() this allows you to set an
 For ease of use, JBA comes built in with a few classes to help you use MySQL as a database system. You can set up the database for usage in the pre-generated `public void run()` method made on implementing the JBA class. Inside that run method, simply enter the code below, replacing each String with your details for your MySQL DB.
 
 ```java
-setupMySQL("mysql_user", "mysql_pass", "mysql_address, "mysql_dbname");
+setupMySQL("mysql_user", "mysql_pass", "mysql_address", "mysql_dbname");
 ```
 
+This can be easily configured with the Config system in JBA, which you can scroll further down to see.
 You can then query the database like so:
 
 ```java
@@ -92,11 +93,8 @@ public Clazz getClazzById(String id) {
             PreparedStatement statement = conn.prepareStatement("SELECT * FROM dbname WHERE id = ?");
             statement.setString(1, id);
             ResultSet set = statement.executeQuery();
-            if(set.next()) {
-                c[0] = new Clazz(id, set.getString("message"));
-            } else {
-                c[0] = new Clazz(id, null);
-            }
+            if(set.next()) c[0] = new Clazz(id, set.getString("message"));
+            else c[0] = new Clazz(id, null);
         });
     } catch (SQLException e) {
         c[0] = new Clazz(id, null);
@@ -105,7 +103,7 @@ public Clazz getClazzById(String id) {
 }
 ```
 
-# Config
+# Config <a name="config"></a>
 JBA also comes with a `Config` class to make it easier to make configs.
 You create it like this:
 
@@ -121,13 +119,23 @@ config.getString("prefix"); // Returns "!~"
 config.getString("mysql.user"); // Returns "user"
 ```
 
+<a name="mysql-config"></a>
+You can use this with the `setupMySQL()` method mentioned earlier for an easier setup.
+
+```java
+setupMySQL(config.getString("mysql.user"), config.getString("mysql.password"), config.getString("mysql.address"), config.getString("mysql.dbname"));
+```
+
 ## Example Config
 ```
 {
   "token": "botToken",
-  "prefix": "!~"
+  "prefix": "!~",
   "mysql": {
-    "user": "user"
+    "user": "user",
+    "password":"password",
+    "address":"127.0.0.1",
+    "dbname":"botdatabase"
   }
 }
 ```
