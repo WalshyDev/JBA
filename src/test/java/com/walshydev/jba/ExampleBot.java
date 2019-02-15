@@ -1,8 +1,8 @@
 package com.walshydev.jba;
 
 import com.walshydev.jba.commands.PingCommand;
-import net.dv8tion.jda.core.AccountType;
-import net.dv8tion.jda.core.entities.Game;
+import net.dv8tion.jda.api.AccountType;
+import net.dv8tion.jda.api.entities.Activity;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -40,7 +40,7 @@ public class ExampleBot extends JBA {
         // Register a new command
         registerCommand(new PingCommand());
 
-        getClient().getPresence().setGame(Game.playing("JBA is cool"));
+        getClient().getPresence().setPresence(Activity.playing("JBA is cool"), false);
 
         // Log that the bot has fully started.
         LOGGER.info("Started the example bot successfully! JBA is running v" + getJBAVersion());

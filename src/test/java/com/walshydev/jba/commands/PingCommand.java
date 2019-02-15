@@ -2,7 +2,10 @@ package com.walshydev.jba.commands;
 
 import com.walshydev.jba.ExampleBot;
 import com.walshydev.jba.SQLController;
-import net.dv8tion.jda.core.entities.*;
+import net.dv8tion.jda.api.entities.Member;
+import net.dv8tion.jda.api.entities.Message;
+import net.dv8tion.jda.api.entities.MessageChannel;
+import net.dv8tion.jda.api.entities.User;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -18,7 +21,7 @@ public class PingCommand implements Command {
     @Override
     public void onCommand(User sender, MessageChannel channel, Message message, String[] args, Member member) {
         // Get the time since the message sent by the user was created.
-        long pongTime = message.getCreationTime().until(ZonedDateTime.now(), ChronoUnit.MILLIS);
+        long pongTime = message.getTimeCreated().until(ZonedDateTime.now(), ChronoUnit.MILLIS);
         channel.sendMessage("Pong! `" + pongTime + "ms`").queue();
         try {
             SQLController.runSqlTask(conn -> {

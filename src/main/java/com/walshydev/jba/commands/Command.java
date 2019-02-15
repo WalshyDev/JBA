@@ -1,6 +1,9 @@
 package com.walshydev.jba.commands;
 
-import net.dv8tion.jda.core.entities.*;
+import net.dv8tion.jda.api.entities.Member;
+import net.dv8tion.jda.api.entities.Message;
+import net.dv8tion.jda.api.entities.MessageChannel;
+import net.dv8tion.jda.api.entities.User;
 
 public interface Command {
 

@@ -6,7 +6,7 @@
 
     <groupId>com.walshydev.jba</groupId>
     <artifactId>JBA</artifactId>
-    <version>1.3</version>
+    <version>1.4</version>
 
     <properties>
         <github.global.server>github</github.global.server>
@@ -23,7 +23,7 @@
         <dependency>
             <groupId>net.dv8tion</groupId>
             <artifactId>JDA</artifactId>
-            <version>3.5.1_339</version>
+            <version>4.ALPHA.0_44</version>
         </dependency>
         <dependency>
             <groupId>ch.qos.logback</groupId>

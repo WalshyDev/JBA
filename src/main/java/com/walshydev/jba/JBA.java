@@ -3,15 +3,13 @@ package com.walshydev.jba;
 import com.mysql.cj.jdbc.MysqlDataSource;
 import com.walshydev.jba.commands.Command;
 import com.walshydev.jba.sql.SQLTask;
-import net.dv8tion.jda.bot.sharding.DefaultShardManager;
-import net.dv8tion.jda.bot.sharding.DefaultShardManagerBuilder;
-import net.dv8tion.jda.bot.sharding.ShardManager;
-import net.dv8tion.jda.core.AccountType;
-import net.dv8tion.jda.core.JDA;
-import net.dv8tion.jda.core.JDABuilder;
-import net.dv8tion.jda.core.entities.Guild;
-import net.dv8tion.jda.core.exceptions.RateLimitedException;
-import net.dv8tion.jda.core.utils.SessionControllerAdapter;
+import net.dv8tion.jda.api.AccountType;
+import net.dv8tion.jda.api.JDA;
+import net.dv8tion.jda.api.JDABuilder;
+import net.dv8tion.jda.api.entities.Guild;
+import net.dv8tion.jda.api.sharding.DefaultShardManagerBuilder;
+import net.dv8tion.jda.api.sharding.ShardManager;
+import net.dv8tion.jda.api.utils.SessionControllerAdapter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -117,7 +115,7 @@ public abstract class JBA {
         JBAListener jbaListener = new JBAListener();
         try {
             if (shards == 1) {
-                client = jdaBuilder.addEventListener(jbaListener).buildAsync();
+                client = jdaBuilder.addEventListeners(jbaListener).build();
             } else {
                 shardManager = new DefaultShardManagerBuilder().setToken(token)
                         .setSessionController(new SessionControllerAdapter())
