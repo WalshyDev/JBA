@@ -101,6 +101,10 @@ public class Config {
     public int getInt(String s){
         return this.getElement(s).getAsInt();
     }
+    
+    public long getLong(String s) {
+        return this.getElement(s).getAsLong();
+    }
 
     public List<String> getStringList(String s){
         List<String> list = new ArrayList<>();
