@@ -105,6 +105,10 @@ public class Config {
     public long getLong(String s) {
         return this.getElement(s).getAsLong();
     }
+    
+    public boolean getBoolean(String s) {
+        return this.getElement(s).getAsBoolean();
+    }
 
     public List<String> getStringList(String s){
         List<String> list = new ArrayList<>();
