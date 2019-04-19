@@ -12,18 +12,24 @@ public class SQLController {
     private static final Context context = null;
     private static MysqlDataSource dataSource;
 
+    private static Connection connection;
+
     protected static void setDataSource(MysqlDataSource source){
         dataSource = source;
     }
 
     private static Connection getConnection() throws SQLException {
-        return dataSource.getConnection();
+        return connection != null ? connection : dataSource.getConnection();
     }
 
     public static void runSqlTask(SQLTask toRun) throws SQLException {
-        Connection c = getConnection();
-        toRun.execute(c);
-        if (!c.isClosed())
-            c.close();
+        toRun.execute(getConnection());
+    }
+
+    public static void close() throws SQLException {
+        if (connection != null && !connection.isClosed()) {
+            connection.close();
+            connection = null;
+        }
     }
 }

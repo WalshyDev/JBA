@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.security.auth.login.LoginException;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -127,6 +128,15 @@ public abstract class JBA {
         } catch (LoginException e) {
             LOGGER.error("Failed to build client", e);
         }
+
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            try {
+                SQLController.close();
+            } catch (SQLException e) {
+                LOGGER.error("Failed to close MySQL connection!", e);
+            }
+        }));
+
         return client;
     }
 
